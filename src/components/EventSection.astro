@@ -7,6 +7,8 @@ interface Props {
   ctaUrl: string;
   ctaLabel?: string;
   imageSrc: string;
+  imageWidth?: number;
+  imageHeight?: number;
   eyebrow?: string;
   featured?: boolean;
 }
@@ -18,13 +20,15 @@ const {
   ctaUrl,
   ctaLabel = 'Learn More',
   imageSrc,
+  imageWidth,
+  imageHeight,
   eyebrow,
   featured = false,
 } = Astro.props;
 ---
 <section class="event">
   <div class="event-hero">
-    <img src={imageSrc} alt={title} />
+    <img src={imageSrc} alt={title} width={imageWidth} height={imageHeight} />
   </div>
   <div class="event-body">
     <div class="container">
@@ -48,9 +52,11 @@ const {
   .event-hero {
     width: 100%;
     background: var(--bg);
+    display: flex;
+    justify-content: center;
   }
   .event-hero img {
-    width: 100%;
+    max-width: min(100%, 600px);
     height: auto;
     display: block;
   }
