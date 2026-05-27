@@ -1,0 +1,96 @@
+---
+interface Props {
+  title: string;
+  date: string;
+  location: string;
+  description: string;
+  ctaUrl: string;
+  ctaLabel?: string;
+  imageSrc: string;
+  featured?: boolean;
+  eyebrow?: string;
+}
+const {
+  title,
+  date,
+  location,
+  description,
+  ctaUrl,
+  ctaLabel = 'Learn More',
+  imageSrc,
+  featured = false,
+  eyebrow,
+} = Astro.props;
+---
+<article class={`card ${featured ? 'card-featured' : ''}`}>
+  <div class="card-media">
+    <div class="card-img" style={`background-image: url('${imageSrc}')`}></div>
+  </div>
+  <div class="card-body">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h3>{title}</h3>
+    <p class="meta"><span class="meta-date">{date}</span></p>
+    <p class="meta meta-loc">{location}</p>
+    <p class="desc">{description}</p>
+    <a href={ctaUrl} class={`btn ${featured ? 'btn-solid' : ''}`} target="_blank" rel="noopener">
+      {ctaLabel}
+    </a>
+  </div>
+</article>
+
+<style>
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+  }
+  .card-media {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    position: relative;
+  }
+  .card-featured .card-media {
+    aspect-ratio: 4 / 5;
+  }
+  .card-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  .card-body {
+    padding: 1.5rem;
+  }
+  .card-featured .card-body {
+    padding: 2rem 1.5rem;
+  }
+  .card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+  .card-featured h3 {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+  }
+  .meta {
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin: 0.25rem 0;
+    font-weight: 500;
+  }
+  .meta-loc {
+    color: var(--ink-dim);
+    font-weight: 400;
+  }
+  .desc {
+    margin: 1rem 0 1.5rem;
+    color: var(--ink-dim);
+  }
+</style>

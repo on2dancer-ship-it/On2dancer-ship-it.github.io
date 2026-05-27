@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Mission from '../components/Mission.astro';
+import EventSection from '../components/EventSection.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base>
+  <Hero />
+  <Mission />
+
+  <div id="events"></div>
+
+  <EventSection
+    featured
+    eyebrow="Featured Event"
+    title="BACHATEURO 2026"
+    date="Saturday, June 13, 2026 · 7:00 PM"
+    location="Space 550 · 550 Barneveld Ave, San Francisco"
+    description="Celebrating a decade of rhythm, beats, and sensual bachata instruction in SF. Live music, world-renowned DJs, performances, and refreshments"
+    ctaUrl="https://danxer.com/events/17408/bachateuro-sf-2026"
+    ctaLabel="Get Tickets"
+    imageSrc="/images/bachateuro.jpg"
+  />
+
+  <EventSection
+    eyebrow="1st & 3rd Thursdays"
+    title="Bachata Thursdays @ Cigar Bar"
+    date="1st & 3rd Thursdays"
+    location="850 Montgomery St, San Francisco"
+    description="Lessons (50-person max), dance hall access, and after-party. $10 minimum purchase, or $8 pre-registration with a $10 coupon. Happy hour Wed–Fri 5:30–7:30pm"
+    ctaUrl="https://fb.me/e/1kHpRaTON"
+    ctaLabel="Event Details"
+    imageSrc="/images/event.jpg"
+  />
+
+  <EventSection
+    eyebrow="Auditions"
+    title="Sangre Latina Bachata"
+    date="July 30 · 7:45 PM"
+    location="Footloose Dance Center · Rohnert Park"
+    description="All skill levels are welcome. Join our growing performance team"
+    ctaUrl="https://docs.google.com/forms/d/e/1FAIpQLSe2c2eL7pACG2XzOoBkQe843NDarGabMv1zTkw6Vvi0WBkxdw/viewform"
+    ctaLabel="Sign Up"
+    imageSrc="/images/sangre-latina.jpg"
+  />
+
+  <EventSection
+    eyebrow="Weekly Series"
+    title="Sensual Bachata Tuesdays"
+    date="Tuesdays · 6:45 PM · 4-week series"
+    location="Footloose Dance Center · Rohnert Park"
+    description="Progressive classes covering footwork, body movement, and connection techniques"
+    ctaUrl="https://www.facebook.com/events/267369949638755/"
+    ctaLabel="Join Series"
+    imageSrc="/images/sensual-bachata.jpg"
+  />
+
+  <Contact />
+  <Footer />
+</Base>
