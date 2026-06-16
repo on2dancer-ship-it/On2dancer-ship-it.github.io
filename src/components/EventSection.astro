@@ -1,16 +1,17 @@
 ---
 interface Props {
   title: string;
-  date: string;
-  location: string;
-  description: string;
-  ctaUrl: string;
+  date?: string;
+  location?: string;
+  description?: string;
+  ctaUrl?: string;
   ctaLabel?: string;
   imageSrc: string;
   imageWidth?: number;
   imageHeight?: number;
   eyebrow?: string;
   featured?: boolean;
+  imageOnly?: boolean;
 }
 const {
   title,
@@ -24,25 +25,30 @@ const {
   imageHeight,
   eyebrow,
   featured = false,
+  imageOnly = false,
 } = Astro.props;
 ---
 <section class="event">
   <div class="event-hero">
     <img src={imageSrc} alt={title} width={imageWidth} height={imageHeight} />
   </div>
-  <div class="event-body">
-    <div class="container">
-      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-      <h2>{title}</h2>
-      <div class="divider"></div>
-      <p class="meta meta-date">{date}</p>
-      <p class="meta meta-loc">{location}</p>
-      <p class="desc">{description}</p>
-      <a href={ctaUrl} class={`btn ${featured ? 'btn-solid' : ''}`} target="_blank" rel="noopener">
-        {ctaLabel}
-      </a>
+  {!imageOnly && (
+    <div class="event-body">
+      <div class="container">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h2>{title}</h2>
+        <div class="divider"></div>
+        {date && <p class="meta meta-date">{date}</p>}
+        {location && <p class="meta meta-loc">{location}</p>}
+        {description && <p class="desc">{description}</p>}
+        {ctaUrl && (
+          <a href={ctaUrl} class={`btn ${featured ? 'btn-solid' : ''}`} target="_blank" rel="noopener">
+            {ctaLabel}
+          </a>
+        )}
+      </div>
     </div>
-  </div>
+  )}
 </section>
 
 <style>
