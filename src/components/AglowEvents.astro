@@ -1,0 +1,57 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+}
+const { eyebrow = 'Live Calendar', title = "What's Coming Up" } = Astro.props;
+
+// local dev: when deploying, change this host AND the e.origin check in the
+// script below together → https://staging.aglow.life (or https://aglow.life)
+const EMBED_SRC =
+  'https://staging.aglow.life/embed?userId=1da9cdf8-dac7-4d56-9f8b-48d48108ba56';
+---
+<section class="section aglow-events">
+  <div class="container">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    {title && <h2>{title}</h2>}
+    <div class="divider"></div>
+  </div>
+  <iframe
+    id="aglow-events-frame"
+    src={EMBED_SRC}
+    title="aglow events"
+    loading="lazy"
+  ></iframe>
+</section>
+
+<script>
+  // local dev origin — must match the iframe host above; change both together
+  // when deploying (https://staging.aglow.life or https://aglow.life).
+  const ORIGIN = 'https://staging.aglow.life';
+  const frame = document.getElementById(
+    'aglow-events-frame',
+  ) as HTMLIFrameElement | null;
+
+  // the embed broadcasts its content height on load and reflow; size the iframe
+  // to match so there's no inner scrollbar or empty gap.
+  window.addEventListener('message', (e: MessageEvent) => {
+    if (e.origin !== ORIGIN) return;
+    if (e.source !== frame?.contentWindow) return;
+    const data = e.data;
+    if (data?.type === 'aglow-embed:height' && typeof data.height === 'number') {
+      frame.style.height = `${data.height}px`;
+    }
+  });
+</script>
+
+<style>
+  #aglow-events-frame {
+    display: block;
+    width: 100%;
+    /* fallback before the first postMessage (and if JS is disabled) */
+    height: 720px;
+    border: 0;
+    background: transparent;
+    margin-top: 1.5rem;
+  }
+</style>

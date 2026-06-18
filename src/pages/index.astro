@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Mission from '../components/Mission.astro';
 import EventSection from '../components/EventSection.astro';
+import AglowEvents from '../components/AglowEvents.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -12,33 +13,14 @@ import Footer from '../components/Footer.astro';
 
   <div id="events"></div>
 
+  <AglowEvents />
+
   <EventSection
     imageOnly
     title="Bachata Fusión Lab"
     imageSrc="/images/bachata-fusion-lab.jpg"
     imageWidth={1080}
     imageHeight={1350}
-  />
-
-  <EventSection
-    imageOnly
-    title="BACHATEURO 2026"
-    imageSrc="/images/bachateuro.jpg"
-    imageWidth={1350}
-    imageHeight={1800}
-  />
-
-  <EventSection
-    eyebrow="1st & 3rd Thursdays"
-    title="Bachata Thursdays @ Cigar Bar"
-    date="1st & 3rd Thursdays"
-    location="850 Montgomery St, San Francisco"
-    description="Lessons, dance access, and after-party. $10 minimum purchase, or $8 pre-registration with a $10 coupon. Happy hour Wed–Fri 5:30–7:30pm"
-    ctaUrl="https://fb.me/e/1kHpRaTON"
-    ctaLabel="Event Details"
-    imageSrc="/images/cigar-bar-2026.jpg"
-    imageWidth={1728}
-    imageHeight={2304}
   />
 
   <EventSection
